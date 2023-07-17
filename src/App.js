@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import {useGetGoodsQuery,useAddProductMutation,useDeleteProductMutation}  from './redux/goodsApi'
+import { Link } from 'react-router-dom';
 function App() {
 
   const [count, setCount] = useState('')
@@ -42,7 +43,7 @@ function App() {
         data.map((item)=>{
          return <div key={item.id}>
           <h2 >
-            {item.id}-{item.name}
+          <Link to={`/goods/${item.id}`}>{item.id}-{item.name}</Link>
             <button onClick={(e)=>handleDeleteProduct(item.id)}>X</button>
           </h2>
          </div>
