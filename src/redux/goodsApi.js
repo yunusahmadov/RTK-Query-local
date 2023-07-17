@@ -27,8 +27,16 @@ import { createApi,fetchBaseQuery}from '@reduxjs/toolkit/query/react'
             }),
         //Тут мы указываем что у нас поменялось и нужно обновить список
         invalidatesTags:[{type:'Products',id:'LIST'}]
+        }),
+
+        deleteProduct: build.mutation({
+            query:(id)=>({
+                url:`goods/${id}`,
+                method:'DELETE'
+            }),
+            invalidatesTags:[{type:'Products',id:'LIST'}]
         })
     })
  })
  //Экспортируем
- export const {useGetGoodsQuery,useAddProductMutation}=goodsApi
+ export const {useGetGoodsQuery,useAddProductMutation,useDeleteProductMutation}=goodsApi

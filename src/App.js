@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useGetGoodsQuery,useAddProductMutation}  from './redux/goodsApi'
+import {useGetGoodsQuery,useAddProductMutation,useDeleteProductMutation}  from './redux/goodsApi'
 function App() {
 
   const [count, setCount] = useState('')
@@ -8,6 +8,7 @@ function App() {
   const{data=[],isLoading}=useGetGoodsQuery(count);
   //Из хука достаем функцию  
   const [addProduct,{isError}]=useAddProductMutation();
+  const [deleteProduct]=useDeleteProductMutation()
   
   //Вызываем функцию при клике
   const handleAddProduct= async()=>{
@@ -15,6 +16,10 @@ function App() {
       await addProduct({name:newProduct}).unwrap();
       setNewProduct('')
     }
+  }
+
+  const handleDeleteProduct= async(id)=>{
+    await deleteProduct(id).unwrap()
   }
 
   if (isLoading) return <h1>Loading</h1>
@@ -32,13 +37,18 @@ function App() {
           <option value="3">3</option>
         </select>
       </div>
-      {
+        <div>
+        {
         data.map((item)=>{
-         return <h2 key={item.id}>
+         return <div key={item.id}>
+          <h2 >
             {item.id}-{item.name}
+            <button onClick={(e)=>handleDeleteProduct(item.id)}>X</button>
           </h2>
+         </div>
         })
       }
+        </div>
     </div>
   )
 }
