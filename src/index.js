@@ -5,6 +5,8 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route,Routes} from 'react-router-dom';
 import ProductDetailsPage from './components/ProductDetailsPage ';
+import '../src/index.css'
+
 
 ReactDOM.render(
   <Provider store={store}>

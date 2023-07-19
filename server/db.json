@@ -2,7 +2,7 @@
   "goods": [
     {
       "id": 1,
-      "name": "Milk"
+      "name": "milk"
     },
     {
       "id": 2,
@@ -19,6 +19,10 @@
     {
       "name": "bread",
       "id": 5
+    },
+    {
+      "name": "asd",
+      "id": 6
     }
   ]
 }
