@@ -1,28 +1,19 @@
 {
   "goods": [
     {
-      "id": 1,
-      "name": "milk"
+      "name": "Milk",
+      "title": "Good Milk",
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "bananas"
+      "name": "ads",
+      "title": "asd",
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "icecream"
-    },
-    {
-      "name": "yogurt",
-      "id": 4
-    },
-    {
-      "name": "bread",
-      "id": 5
-    },
-    {
-      "name": "asd",
-      "id": 6
+      "name": "Food",
+      "title": "Fddfdf",
+      "id": 3
     }
   ]
 }

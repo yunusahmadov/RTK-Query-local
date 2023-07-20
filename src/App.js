@@ -6,6 +6,9 @@ function App() {
 
   const [count, setCount] = useState('')
   const [newProduct,setNewProduct]=useState('')
+  const [prodTitle,setProdTitle]=useState('')
+  const [empty,setEmpty]=useState(true)
+
   //Count который мы поместили в useGetGoodsQuery пойдет в goodsApi
   const{data=[],isLoading}=useGetGoodsQuery(count);
   //Из хука достаем функцию  
@@ -14,10 +17,15 @@ function App() {
   
   //Вызываем функцию при клике
   const handleAddProduct= async()=>{
-    console.log('clicked');
     if (newProduct) {
-      await addProduct({name:newProduct}).unwrap();
-      setNewProduct('')
+      await addProduct({ name: newProduct,title:prodTitle }).unwrap();
+      setNewProduct("");
+      setProdTitle("")
+    } else {
+      setEmpty(false);
+      setTimeout(() => {
+        setEmpty(true);
+      }, 3000);
     }
   }
 
@@ -30,17 +38,26 @@ function App() {
   return (
     <div className="flex flex-col items-center mt-10">
       <div className="flex w-1/3 justify-between">
-        <div className='w-full gap-[10px]'>
+        <div className='w-full gap-[10px] bg-slate-700 flex flex-col'>
           <input 
             type="text"
             value={newProduct}
             onChange={(e) => setNewProduct(e.target.value)}
-            className='py-3 pl-3 w-[65%] text-2xl'
+            className='py-3 pl-3 w-full text-2xl'
+            placeholder='Name'
+          />
+          <input 
+            type="text"
+            value={prodTitle}
+            onChange={(e) => setProdTitle(e.target.value)}
+            className='py-3 mt-5 pl-3 w-full text-2xl'
+            placeholder='Title'
           />
           <button className='bg-green-400' onClick={handleAddProduct}>Add product</button>
         </div>
 
-        <div>
+      </div>
+      <div>
           <select value={count} onChange={(e) => setCount(e.target.value)}>
             <option value="">all</option>
             <option value="1">1</option>
@@ -48,8 +65,6 @@ function App() {
             <option value="3">3</option>
           </select>
         </div>
-
-      </div>
 
       <div className="flex gap-10 flex-col w-1/3 mt-10">
         {data.map((item) => {
@@ -73,7 +88,7 @@ function App() {
       </div>
       <div>
       {/* При newProduct равном пустому значению, rightPosition будет '0', иначе '100px' */}
-      {newProduct === '' && <ErrorMessage  newProduct={newProduct}/>}
+      {<ErrorMessage empty={empty}/>}
     </div>
     </div>
   );
