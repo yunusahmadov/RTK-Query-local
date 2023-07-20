@@ -14,12 +14,13 @@ const ProductDetailsPage = () => {
     return <h1>Product not found</h1>;
   }
 
-  const { name } = data;
+  const { name,title } = data;
 
   return (
-    <div>
-      <h1>Product Details:</h1>
-      <p>Name: {name}</p>
+    <div className='w-full bg-slate-400 flex flex-col items-center'>
+      <h1 className='text-3xl'>Product Details:</h1>
+      <p className='text-xl'>Name: {name}</p>
+      <p className='text-xl'>Title: {title}</p>
     </div>
   );
 };
